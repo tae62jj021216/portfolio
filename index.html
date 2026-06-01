@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>김태윤 | Portfolio</title>
+    <meta
+      name="description"
+      content="항공소프트웨어, UAV 보안, 항공보안 및 방위산업 분야를 지향하는 김태윤의 포트폴리오"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="홈으로 이동">
+        <span class="brand-mark">KT</span>
+        <span id="brandName">김태윤</span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#projects">프로젝트</a>
+        <a href="#skills">역량</a>
+        <a href="#credentials">자격/계획</a>
+        <a href="#schedule">일정</a>
+        <a href="#contact">연락</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow">Aviation Software Portfolio</p>
+          <h1 id="heroTitle"></h1>
+          <p id="heroIntro" class="hero-intro"></p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">프로젝트 보기</a>
+            <a class="button secondary" href="#contact">연락하기</a>
+          </div>
+          <dl class="hero-stats" id="stats"></dl>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="assets/hero-portfolio.png" alt="" />
+        </div>
+      </section>
+
+      <section class="section overview" aria-labelledby="overviewTitle">
+        <div>
+          <p class="eyebrow">Profile</p>
+          <h2 id="overviewTitle">항공소프트웨어와 보안 분야로 확장하는 개발 지망생</h2>
+        </div>
+        <p id="profileSummary"></p>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projectsTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Work</p>
+          <h2 id="projectsTitle">대표 프로젝트</h2>
+        </div>
+        <div class="project-grid" id="projectGrid"></div>
+      </section>
+
+      <section class="section split" id="skills" aria-labelledby="skillsTitle">
+        <div class="section-heading sticky-heading">
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="skillsTitle">기술과 강점</h2>
+        </div>
+        <div class="skill-list" id="skillList"></div>
+      </section>
+
+      <section class="section process" id="credentials" aria-labelledby="credentialsTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Credentials & Plan</p>
+          <h2 id="credentialsTitle">자격, 학업, 활동 계획</h2>
+        </div>
+        <ol class="timeline" id="credentialList"></ol>
+      </section>
+
+      <section class="section schedule-section" id="schedule" aria-labelledby="scheduleTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Schedule</p>
+          <h2 id="scheduleTitle">준비 일정</h2>
+        </div>
+        <div class="schedule-grid" id="scheduleGrid"></div>
+      </section>
+
+      <section class="section split" id="experience" aria-labelledby="experienceTitle">
+        <div class="section-heading sticky-heading">
+          <p class="eyebrow">Experience</p>
+          <h2 id="experienceTitle">경험</h2>
+        </div>
+        <div class="skill-list" id="experienceList"></div>
+      </section>
+
+      <section class="section contact" id="contact" aria-labelledby="contactTitle">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contactTitle">항공, 방위산업, 보안 분야의 기회를 찾고 있습니다</h2>
+          <p id="contactText"></p>
+        </div>
+        <div class="contact-actions" id="contactActions"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span id="footerName"></span>
+      <span>Static portfolio for company applications.</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
