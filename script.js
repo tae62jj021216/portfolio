@@ -110,6 +110,8 @@ const portfolio = {
   schedule: [
     {
       month: "2026.06.14",
+      start: "2026-05-18",
+      end: "2026-06-14",
       category: "교육",
       title: "피지컬 AI 제조 AX 캠퍼스 신청 검토",
       description:
@@ -118,6 +120,8 @@ const portfolio = {
     },
     {
       month: "2026.06.15",
+      start: "2026-06-15",
+      end: "2026-06-15",
       category: "학업",
       title: "네트워크 강의 기말고사",
       description:
@@ -126,6 +130,8 @@ const portfolio = {
     },
     {
       month: "2026.06.17",
+      start: "2026-06-17",
+      end: "2026-06-17",
       category: "발표",
       title: "항공소프트웨어프로젝트1 최종 기말발표",
       description:
@@ -134,6 +140,8 @@ const portfolio = {
     },
     {
       month: "2026.07.10",
+      start: "2026-06-01",
+      end: "2026-07-10",
       category: "공모전",
       title: "대학생 IT 논문경진대회 접수 마감",
       description:
@@ -142,6 +150,8 @@ const portfolio = {
     },
     {
       month: "2026.07.17",
+      start: "2026-07-17",
+      end: "2026-07-17",
       category: "공모전",
       title: "본선 합격자 발표",
       description:
@@ -150,6 +160,8 @@ const portfolio = {
     },
     {
       month: "2026.07.18-08.05",
+      start: "2026-07-18",
+      end: "2026-08-05",
       category: "자격증",
       title: "정보처리기사 실기",
       description:
@@ -158,6 +170,8 @@ const portfolio = {
     },
     {
       month: "2026.07.25",
+      start: "2026-07-25",
+      end: "2026-07-25",
       category: "공모전",
       title: "우수논문 발표회",
       description:
@@ -166,6 +180,8 @@ const portfolio = {
     },
     {
       month: "2026.08.07",
+      start: "2026-08-07",
+      end: "2026-08-07",
       category: "공모전",
       title: "본선 결과 발표",
       description:
@@ -174,6 +190,8 @@ const portfolio = {
     },
     {
       month: "2026.08.22",
+      start: "2026-08-22",
+      end: "2026-08-22",
       category: "자격증",
       title: "SQLD 응시",
       description:
@@ -182,6 +200,8 @@ const portfolio = {
     },
     {
       month: "2026.09.14-10.08",
+      start: "2026-09-14",
+      end: "2026-10-08",
       category: "자격증",
       title: "정보보안기사 응시",
       description:
@@ -190,6 +210,8 @@ const portfolio = {
     },
     {
       month: "2026 연말",
+      start: "2026-12-01",
+      end: "2026-12-31",
       category: "학술 활동",
       title: "졸업프로젝트 학술제 발표",
       description:
@@ -198,6 +220,8 @@ const portfolio = {
     },
     {
       month: "상시",
+      start: "2026-06-01",
+      end: "2026-12-31",
       category: "어학",
       title: "토익 700~800점 목표",
       description:
@@ -301,6 +325,80 @@ function renderCredentials() {
     .join("");
 }
 
+function parseDate(value) {
+  return new Date(`${value}T00:00:00`);
+}
+
+function formatMonth(date) {
+  return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function addMonths(date, amount) {
+  return new Date(date.getFullYear(), date.getMonth() + amount, 1);
+}
+
+function getGanttRange() {
+  return {
+    start: parseDate("2026-06-01"),
+    end: parseDate("2026-12-31"),
+  };
+}
+
+function getMonthLabels(start, end) {
+  const labels = [];
+  let cursor = new Date(start.getFullYear(), start.getMonth(), 1);
+  const last = new Date(end.getFullYear(), end.getMonth(), 1);
+
+  while (cursor <= last) {
+    labels.push(formatMonth(cursor));
+    cursor = addMonths(cursor, 1);
+  }
+
+  return labels;
+}
+
+function getBarStyle(item, range) {
+  const rangeStart = range.start.getTime();
+  const rangeEnd = range.end.getTime();
+  const total = rangeEnd - rangeStart;
+  const start = Math.max(parseDate(item.start).getTime(), rangeStart);
+  const end = Math.min(parseDate(item.end).getTime(), rangeEnd);
+  const left = ((start - rangeStart) / total) * 100;
+  const width = Math.max(((end - start) / total) * 100, 1.8);
+
+  return `--bar-start: ${left.toFixed(2)}%; --bar-width: ${width.toFixed(2)}%;`;
+}
+
+function renderGantt() {
+  const range = getGanttRange();
+  const labels = getMonthLabels(range.start, range.end);
+
+  $("#ganttHeader").innerHTML = `
+    <div class="gantt-label">항목</div>
+    <div class="gantt-months">
+      ${labels.map((label) => `<span>${label}</span>`).join("")}
+    </div>
+  `;
+
+  $("#ganttRows").innerHTML = portfolio.schedule
+    .map(
+      (item) => `
+        <div class="gantt-row">
+          <div class="gantt-item">
+            <strong>${item.title}</strong>
+            <span>${item.month} · ${item.status}</span>
+          </div>
+          <div class="gantt-track">
+            <div class="gantt-bar" style="${getBarStyle(item, range)}">
+              <span>${item.category}</span>
+            </div>
+          </div>
+        </div>
+      `,
+    )
+    .join("");
+}
+
 function renderSchedule() {
   $("#scheduleGrid").innerHTML = portfolio.schedule
     .map(
@@ -360,6 +458,7 @@ function init() {
   renderProjects();
   renderSkills();
   renderCredentials();
+  renderGantt();
   renderSchedule();
   renderExperiences();
   renderContact();
