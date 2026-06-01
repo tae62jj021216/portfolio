@@ -369,6 +369,15 @@ function getBarStyle(item, range) {
   return `--bar-start: ${left.toFixed(2)}%; --bar-width: ${width.toFixed(2)}%;`;
 }
 
+function getCategoryClass(category) {
+  if (category === "자격증") return "certificate";
+  if (category === "공모전" || category === "발표" || category === "학술 활동") {
+    return "contest";
+  }
+  if (category === "어학") return "language";
+  return "education";
+}
+
 function renderGantt() {
   const range = getGanttRange();
   const labels = getMonthLabels(range.start, range.end);
@@ -389,7 +398,7 @@ function renderGantt() {
             <span>${item.month} · ${item.status}</span>
           </div>
           <div class="gantt-track">
-            <div class="gantt-bar" style="${getBarStyle(item, range)}">
+            <div class="gantt-bar ${getCategoryClass(item.category)}" style="${getBarStyle(item, range)}">
               <span>${item.category}</span>
             </div>
           </div>

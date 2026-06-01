@@ -259,6 +259,12 @@ h3 {
   margin-bottom: 28px;
 }
 
+.section-note {
+  max-width: 58ch;
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -400,6 +406,66 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--surface);
+  box-shadow: 0 16px 34px rgba(24, 25, 27, 0.08);
+}
+
+.gantt-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 850px;
+  padding: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.gantt-top strong {
+  display: block;
+  font-size: 1.08rem;
+}
+
+.gantt-top span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.gantt-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 14px;
+}
+
+.gantt-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--teal);
+}
+
+.legend-dot.education {
+  background: var(--teal);
+}
+
+.legend-dot.contest {
+  background: var(--coral);
+}
+
+.legend-dot.certificate {
+  background: var(--gold);
+}
+
+.legend-dot.language {
+  background: var(--ink);
 }
 
 .gantt-header,
@@ -496,12 +562,32 @@ h3 {
   transform: translateY(-50%);
 }
 
+.gantt-bar.contest {
+  background: var(--coral);
+  box-shadow: 0 8px 18px rgba(222, 107, 82, 0.18);
+}
+
+.gantt-bar.certificate {
+  background: var(--gold);
+  box-shadow: 0 8px 18px rgba(184, 135, 46, 0.18);
+}
+
+.gantt-bar.language {
+  background: var(--ink);
+  box-shadow: 0 8px 18px rgba(24, 25, 27, 0.18);
+}
+
 .gantt-bar span {
   overflow: hidden;
   font-size: 0.78rem;
   font-weight: 900;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.schedule-detail-title {
+  margin: 28px 0 14px;
+  font-size: 1.2rem;
 }
 
 .schedule-grid {
@@ -676,6 +762,10 @@ h3 {
     margin-right: -18px;
     border-right: 0;
     border-radius: 8px 0 0 8px;
+  }
+
+  .gantt-top {
+    min-width: 740px;
   }
 
   .gantt-header,
